@@ -1,4 +1,5 @@
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'package:bank/calculate_screen.dart';
 import 'package:bank/credit_screen.dart';
 import 'package:bank/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         controller: (_controller),
       ),
       const Page2(),
-      const Page3()
+      const CalculateCreditScreen1()
     ];
     return Scaffold(
         body: PageView(
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                       Icons.more,
                       color: Colors.lightGreen,
                     ),
-                    itemLabel: 'Еще',
+                    itemLabel: 'Калькулятор кредита',
                   ),
                 ],
                 onTap: (int value) {

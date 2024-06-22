@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'package:bank/detailed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:u_credit_card/u_credit_card.dart';
@@ -44,7 +45,7 @@ class _Page1State extends State<Page1> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Илим",
+                    "Банк",
                     style: TextStyle(fontFamily: "SanSerif", fontSize: 24.sp),
                   ),
                   SizedBox(
@@ -63,7 +64,7 @@ class _Page1State extends State<Page1> {
                               padding: EdgeInsets.all(8.0.h),
                               child: CreditCardUi(
                                   topLeftColor: colorsList[index],
-                                  cardHolderFullName: "Ilim Irgashev",
+                                  cardHolderFullName: "Nazgul Chetin",
                                   cardNumber: "4343 4243 4656 5672",
                                   validThru: "10/24"),
                             ),
@@ -90,8 +91,19 @@ class _Page1State extends State<Page1> {
                     ],
                   ),
                   Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    child: Text(
+                      'Новости:',
+                      style: TextStyle(
+                          fontFamily: "SanSerif",
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20.sp),
+                    ),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
+                    child: Container(
+                      decoration: const BoxDecoration(color: Colors.white),
                       height: 300.h,
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: ListView.builder(
@@ -99,10 +111,21 @@ class _Page1State extends State<Page1> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: CustomCard(
-                              title: cardList[index].title,
-                              text: cardList[index].text,
-                              image: cardList[index].image,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailedScreen(
+                                          information: cardList[index].detailedImage,
+                                            appBarTitle:
+                                                cardList[index].title)));
+                              },
+                              child: CustomCard(
+                                title: cardList[index].title,
+                                text: cardList[index].text,
+                                image: cardList[index].image,
+                              ),
                             ),
                           );
                         },
@@ -292,7 +315,12 @@ class CardModel {
   final String image;
   final String text;
   final String title;
-  CardModel({required this.image, required this.text, required this.title});
+  final String detailedImage;
+  CardModel(
+      {required this.image,
+      required this.text,
+      required this.title,
+      required this.detailedImage});
 }
 
 abstract class CardModelData {
@@ -300,21 +328,24 @@ abstract class CardModelData {
     CardModel(
         image: "assets/images/JEMA GER 1722-14.jpg",
         text: "Выдача от 15 минут онлайн",
-        title: "Кредиты"),
+        title: "Кредиты",
+        detailedImage: "assets/images/2024-06-22 19.11.01.jpg"),
     CardModel(
         image: "assets/images/Wavy_Tech-31_Single-01.jpg",
         text: "Большой выбор товаров без переплат - 0%",
-        title: "Рассрочка"),
+        title: "Рассрочка",
+        detailedImage: "assets/images/Снимок экрана 2024-06-22 в 18.53.21.png"),
     CardModel(
+        detailedImage: "assets/images/Снимок экрана 2024-06-22 в 18.49.15.png",
         image:
             "assets/images/decorative-houseplant-isolated-white-background.jpg",
         text: "Удобное снятие и пополнение",
         title: "Депозиты"),
-    CardModel(
-        image:
-            "assets/images/Bill or receipt and credit card 3D illustration.jpg",
-        text: "Безопасное хранение ваших ценностей",
-        title: "Cейфовые ячейки"),
+    // CardModel(
+    //     image:
+    //         "assets/images/Bill or receipt and credit card 3D illustration.jpg",
+    //     text: "Безопасное хранение ваших ценностей",
+    //     title: "Cейфовые ячейки"),
   ];
 }
 
@@ -336,7 +367,7 @@ class CustomCard extends StatelessWidget {
       height: 250.h,
       width: 300.w,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.lightBlue,
           boxShadow: const [
             BoxShadow(
               color: Colors.black87,

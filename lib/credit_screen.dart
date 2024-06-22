@@ -1,4 +1,3 @@
-import 'package:bank/calculate_credit.dart';
 import 'package:bank/calculate_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,35 +80,10 @@ class Page2 extends StatelessWidget {
               MaterialButton(
                 color: Colors.white,
                 onPressed: () {
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (context) => AlertDialog(
-                  //             content: SingleChildScrollView(
-                  //           child: Column(
-                  //             children: [
-                  //               Text("Рассчитать кредит",
-                  //                   style: TextStyle(
-                  //                       fontFamily: "SanSerif",
-                  //                       fontSize: 24.sp)),
-
-                  //               MaterialButton(
-                  //                 color: Colors.red,
-                  //                 onPressed: () {},
-                  //                 child: Text(
-                  //                   "Отправить",
-                  //                   style: TextStyle(
-                  //                       fontFamily: "SanSerif",
-                  //                       fontSize: 12.sp,
-                  //                       color: Colors.white),
-                  //                 ),
-                  //               )
-                  //             ],
-                  //           ),
-                  //         )));
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CalculateCreditScreen1()));
+                          builder: (context) => const CalculateCreditScreen1()));
                 },
                 child: Text(
                   "Рассчитать",
